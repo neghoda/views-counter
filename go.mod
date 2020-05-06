@@ -1,3 +1,3 @@
-module github.com/neghoda/views-per-page-counter
+module github.com/neghoda/views-couter
 
 go 1.13
