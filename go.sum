@@ -1,3 +1,9 @@
+github.com/aerogo/session v0.1.9 h1:pgsFEtCteOQaZ/103q2/O+qrqZileiCZe+vboWKZMlU=
+github.com/aerogo/session v0.1.9/go.mod h1:dgpdXvs9tZXcag5ay6tEoKuySPga226iSh748uIES/E=
+github.com/akyoto/assert v0.2.4 h1:n0FwcNH5dMYq3I8Iu7MOR1WWGkkGH8ao84nvCRJmsbs=
+github.com/akyoto/assert v0.2.4/go.mod h1:SoqVayyOmM/YSBnwOxJHCt4BCocoIrgeceWtJV701C0=
+github.com/akyoto/uuid v1.1.3 h1:FEz14tNTfaUeY0Jrkz2F17rjKiks6hOALGcPmAmtn1s=
+github.com/akyoto/uuid v1.1.3/go.mod h1:8dgzDQyrpuApBGIQHOX7JkvCZHusXZ0tGlQcxxv4bYg=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/labstack/gommon v0.3.0 h1:JEeO0bvc78PKdyHxloTKiF8BD5iGrH8T6MSeGvSgob0=

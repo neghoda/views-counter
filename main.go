@@ -26,5 +26,9 @@ func init() {
 }
 
 func main() {
-	http.ListenAndServe(*port, handlers.NewHomeHandler(logger))
+	homeHandler, err := handlers.NewHomeHandler(logger)
+	if err != nil {
+		logger.Fatal(err)
+	}
+	http.ListenAndServe(*port, homeHandler)
 }
