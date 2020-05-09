@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/neghoda/views-couter/handlers"
+	"github.com/neghoda/views-couter/middlewares"
 )
 
 var (
@@ -30,5 +31,6 @@ func main() {
 	if err != nil {
 		logger.Fatal(err)
 	}
-	http.ListenAndServe(*port, homeHandler)
+	rm := &middlewares.Recovery{logger}
+	http.ListenAndServe(*port, rm.WithRecovery(homeHandler))
 }
