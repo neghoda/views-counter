@@ -11,7 +11,7 @@ import (
 
 const (
 	sessionName   string = "appsession"
-	sessionMaxAge int    = 60
+	sessionMaxAge int    = 5
 )
 
 // StartSession start/rewrite session and returns sessionID along with error
