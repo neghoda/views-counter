@@ -7,12 +7,11 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 var (
-	sessionName   string        = "appsession"
-	sessionMaxAge time.Duration = time.Minute
+	sessionName   string = "appsession"
+	sessionMaxAge int    = 60
 )
 
 // StartSession start/rewrite session and returns sessionID along with error
@@ -21,7 +20,7 @@ func StartSession(w http.ResponseWriter, r *http.Request) (*http.Cookie, error) 
 	if err != nil {
 		return nil, err
 	}
-	cookie := http.Cookie{Name: sessionName, Value: url.QueryEscape(sid), MaxAge: int(sessionMaxAge)}
+	cookie := http.Cookie{Name: sessionName, Value: url.QueryEscape(sid), MaxAge: sessionMaxAge}
 	http.SetCookie(w, &cookie)
 	return &cookie, nil
 }
