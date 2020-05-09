@@ -27,7 +27,7 @@ func NewHomeHandler(l *log.Logger) (*HomeHandler, error) {
 }
 
 func (h *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	_, err := session.GetSessionID(w, r)
+	_, err := session.GetSessionCookie(w, r)
 	// Only track unique users within session
 	if err == http.ErrNoCookie {
 		_, err = session.StartSession(w, r)
@@ -40,8 +40,4 @@ func (h *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	}
 	h.templ.Execute(w, h.visits)
-}
-
-func (h *HomeHandler) parseTemplate() {
-	h.templ = template.Must(template.ParseFiles("templates/home.html"))
 }

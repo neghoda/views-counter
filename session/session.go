@@ -9,7 +9,7 @@ import (
 	"net/url"
 )
 
-var (
+const (
 	sessionName   string = "appsession"
 	sessionMaxAge int    = 60
 )
@@ -25,8 +25,8 @@ func StartSession(w http.ResponseWriter, r *http.Request) (*http.Cookie, error) 
 	return &cookie, nil
 }
 
-// GetSessionID just calls Cookie for request with internal sessionName. http.ErrNoCookie if there no cookie set
-func GetSessionID(w http.ResponseWriter, r *http.Request) (*http.Cookie, error) {
+// GetSessionCookie just calls Cookie for request with internal sessionName. http.ErrNoCookie if there no cookie set
+func GetSessionCookie(w http.ResponseWriter, r *http.Request) (*http.Cookie, error) {
 	return r.Cookie(sessionName)
 }
 

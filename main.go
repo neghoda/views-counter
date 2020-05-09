@@ -59,7 +59,6 @@ func main() {
 	<-shutdown
 
 	if err := s.Shutdown(context.Background()); err != nil {
-		// Error from closing listeners, or context timeout:
 		logger.Printf("HTTP server Shutdown: %v", err)
 	}
 
