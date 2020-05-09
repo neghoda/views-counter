@@ -1,10 +1,13 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
+	"time"
 
 	"github.com/neghoda/views-couter/handlers"
 	"github.com/neghoda/views-couter/middlewares"
@@ -32,5 +35,32 @@ func main() {
 		logger.Fatal(err)
 	}
 	rm := &middlewares.Recovery{logger}
-	http.ListenAndServe(*port, rm.WithRecovery(homeHandler))
+
+	s := &http.Server{
+		Addr:         *port,
+		Handler:      rm.WithRecovery(homeHandler),
+		ReadTimeout:  1 * time.Second,
+		WriteTimeout: 1 * time.Second,
+		IdleTimeout:  120 * time.Second,
+	}
+
+	go func() {
+		err := s.ListenAndServe()
+		if err != nil && err != http.ErrServerClosed {
+			logger.Fatal(err)
+		}
+	}()
+
+	shutdown := make(chan os.Signal)
+
+	signal.Notify(shutdown, os.Interrupt)
+	signal.Notify(shutdown, os.Kill)
+
+	<-shutdown
+
+	if err := s.Shutdown(context.Background()); err != nil {
+		// Error from closing listeners, or context timeout:
+		logger.Printf("HTTP server Shutdown: %v", err)
+	}
+
 }
