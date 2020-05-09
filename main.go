@@ -21,6 +21,7 @@ var (
 func init() {
 	port = flag.String("port", ":8080", "Application port")
 	logFileLoc := flag.String("lfile", "application.log", "Log file location")
+	flag.Parse()
 
 	file, err := os.OpenFile(*logFileLoc, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
@@ -43,6 +44,8 @@ func main() {
 		WriteTimeout: 1 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
+
+	logger.Printf("Starting server at: %v port", *port)
 
 	go func() {
 		err := s.ListenAndServe()
