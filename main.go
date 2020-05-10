@@ -35,7 +35,7 @@ func main() {
 	if err != nil {
 		logger.Fatal(err)
 	}
-	rm := &middlewares.Recovery{logger}
+	rm := &middlewares.Recovery{Logger: logger}
 
 	s := &http.Server{
 		Addr:         *port,
